@@ -4,6 +4,14 @@ Official code for training WaveSem and reproducing the main experiments: signal 
 
 WaveSem is a frequency-adaptive neural codec for nanopore sequencing signals. A discrete wavelet transform splits each latent sequence into a low-frequency semantic core and high-frequency texture residuals. The two streams are quantized by separate residual vector quantizers, so codebook capacity is spent on biological structure rather than sensor noise.
 
+<p align="center">
+  <img src="assets/wavesem_architecture.png" alt="WaveSem architecture" width="100%">
+</p>
+
+<p align="center"><em>
+A CNN encoder maps the raw signal into a latent sequence. Multi-level DWT separates a low-frequency semantic stream (Transformer + 6-layer RVQ) from a high-frequency texture stream (hierarchical gated fusion + 2-layer RVQ). Reconstruction applies IDWT and a CNN decoder.
+</em></p>
+
 ## Abstract
 
 High-throughput scientific sensing, exemplified by genomics, faces a representation bottleneck: discrete biological events are often obscured by continuous, high-entropy stochastic noise. Standard neural codecs allocate their information budget to those fluctuations instead of to low-entropy structural motifs. WaveSem imposes a wavelet inductive bias on discrete representation learning and explicitly disentangles each signal into a structured semantic core and a residual texture component. On large-scale nanopore data, WaveSem achieves a 14× storage reduction while retaining competitive basecalling accuracy. Linear probing of the frozen encoder reaches an AUROC of 0.928 for 5mC methylation detection, showing that the learned tokens preserve information beyond nucleotide identity.
