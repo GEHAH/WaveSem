@@ -1,0 +1,23 @@
+# WaveSem pretraining and the analyses under pretrain/ and analysis/.
+# Install into the environment that already has a CUDA build of PyTorch.
+torch
+numpy
+h5py
+PyWavelets
+vector-quantize-pytorch
+accelerate
+tqdm
+tensorboard
+scikit-learn
+matplotlib
+einops
+pandas
+torchaudio
+local-attention
+gateloop-transformer
+packaging
+
+# Basecalling (basecalling/) additionally needs the packages listed in
+# basecalling/requirements.txt, including fast_ctc_decode, parasail and pandas.
+# Those pins target the upstream Python 3.7 stack; match them to the
+# environment that already trains the CRF decoder.
